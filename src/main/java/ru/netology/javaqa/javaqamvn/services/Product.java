@@ -28,6 +28,8 @@ public class Product {
         return name;
     }
 
-
-
+    public String setName(String name) {
+        this.name = name;
+        return name;
+    }
 }

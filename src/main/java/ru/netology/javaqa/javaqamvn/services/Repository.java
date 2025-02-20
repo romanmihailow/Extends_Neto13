@@ -3,6 +3,7 @@ package ru.netology.javaqa.javaqamvn.services;
 public class Repository {
     Product[] products = new Product[0];
 
+    ///   FIND_ALL
     public Product[] findAll() {
         return products;
     }

@@ -7,12 +7,12 @@ public class Manager {
         this.repository = repository;
     }
 
-    ///  ADD
+    ///  ADD_PRODUCT
     public void add(Product product) {
         repository.add(product);
     }
 
-    ///  SEARCH_BY_TEXT
+    ///  SEARCH_BY_TEXT_IN_PRODUCT
     public Product[] searchBy(String text) {
         Product[] result = new Product[0];
         for (Product product : repository.findAll()) {
@@ -27,7 +27,7 @@ public class Manager {
         }
         return result;
     }
-    /// метод определения соответствия товара product запросу search
+    // метод определения соответствия товара product запросу search
     public boolean matches(Product product, String search) {
         return product.getName().contains(search);
     }

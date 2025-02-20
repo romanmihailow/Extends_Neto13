@@ -66,11 +66,4 @@ class ManagerTest {
 
     }
 
-    @Test
-    void searchBy() {
-    }
-
-    @Test
-    void matches() {
-    }
 }
