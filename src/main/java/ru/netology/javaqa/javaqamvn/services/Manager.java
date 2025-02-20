@@ -13,22 +13,32 @@ public class Manager {
     }
 
     ///  SEARCH_BY_TEXT_IN_PRODUCT
-    public Product[] searchBy(String text) {
-        Product[] result = new Product[0];
-        for (Product product : repository.findAll()) {
-            if (matches(product, text)) {
-                Product[] tmp = new Product[result.length + 1];
-                for (int i = 0; i < result.length; i++) {
-                    tmp[i] = result[i];
-                }
-                tmp[tmp.length - 1] = product;
-                result = tmp;
+    public Product[] searchBy(String search) {
+        Product[] allProducts = repository.findAll(); // Получаем все продукты из репозитория
+        int matchCount = 0; // Счетчик количества совпавших продуктов
+
+        // Сначала проходим по всем продуктам и проверяем, сколько из них подходят по поисковому запросу
+        for (Product product : allProducts) {
+            if (product.matches(search)) {
+                matchCount++;
             }
         }
+
+        // Создаем новый массив, в который будем добавлять найденные продукты
+        Product[] result = new Product[matchCount];
+        int index = 0;
+
+        // Проходим снова по продуктам и добавляем подходящие в новый массив
+        for (Product product : allProducts) {
+            if (product.matches(search)) {
+                result[index++] = product;
+            }
+        }
+
         return result;
     }
-    // метод определения соответствия товара product запросу search
-    public boolean matches(Product product, String search) {
-        return product.getName().contains(search);
-    }
+
+
+
+
 }

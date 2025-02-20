@@ -8,6 +8,23 @@ import static org.junit.jupiter.api.Assertions.*;
 class ManagerTest {
 
     @Test
+    void testAddProduct() {
+        Repository repository = new Repository();
+        Manager manager = new Manager(repository);
+
+        // Используем полный конструктор
+        Book book = new Book(1, "Book name_one", 100, "author_1");
+        manager.add(book);
+
+        Product[] allProducts = repository.findAll();
+        assertEquals(1, allProducts.length); // Проверяем, что продукт добавлен
+        assertEquals("Book name_one", allProducts[0].getName()); // Проверяем название продукта
+        assertEquals(100, allProducts[0].getPrice()); // Проверяем цену продукта
+    }
+
+
+
+    @Test
     void searchByTextOne() {
         Repository repository = new Repository();
         Manager manager = new Manager(repository);

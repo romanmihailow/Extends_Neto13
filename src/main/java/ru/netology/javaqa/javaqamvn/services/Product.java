@@ -12,6 +12,11 @@ public class Product {
         this.price = price;
     }
 
+    public boolean matches(String search) {
+        return name.toLowerCase().contains(search.toLowerCase());
+    }
+
+
     public int getPrice() {
         return price;
     }

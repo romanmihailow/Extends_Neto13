@@ -14,5 +14,14 @@ public class Book extends Product {
     }
 
 
+    @Override
+    public boolean matches(String search) {
+        if (super.matches(search)) {
+            return true;
+        }
+        return author.toLowerCase().contains(search.toLowerCase());
+    }
+
+
 }
 
