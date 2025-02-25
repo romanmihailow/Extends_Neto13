@@ -8,15 +8,7 @@ public class Repository {
         return products;
     }
 
-    ///  ADD
-    public void add(Product product) {
-        Product[] temp = new Product[products.length + 1];
-        for (int i = 0; i < products.length; i++) {
-            temp[i] = products[i];
-        }
-        temp[temp.length - 1] = product;
-        products = temp;
-    }
+
 
 //        ///   FIND_BY_ID+
 //    public Product[] findById(int id) {
@@ -35,7 +27,19 @@ public class Repository {
 
 
 
+    ///  ADD
+    public void add(Product product) {
 
+
+
+
+        Product[] temp = new Product[products.length + 1];
+        for (int i = 0; i < products.length; i++) {
+            temp[i] = products[i];
+        }
+        temp[temp.length - 1] = product;
+        products = temp;
+    }
 
     /// REMOVE
     public void removeById(int removeId) {
