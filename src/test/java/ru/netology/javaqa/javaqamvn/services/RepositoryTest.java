@@ -96,9 +96,50 @@ class RepositoryTest {
         Assertions.assertThrows(NotFoundException.class,
                 () -> repository.removeById(-1)
         );
-
-
         /// NETOLOGY -> 44:50 ] https://netology.ru/profile/program/javaqa-52/lessons/230578/lesson_items/1221922
     }
+
+
+    @Test
+    public void testAddProductWithDuplicateId() {
+        // Создаем репозиторий и два продукта с одинаковым ID
+        Repository repository = new Repository();
+        Product product1 = new Product(1, "Book", 100);
+        Product product2 = new Product(1, "Another Book", 150);
+
+        // Добавляем первый продукт
+        repository.add(product1);
+
+        // Проверяем, что при добавлении второго товара с таким же ID выбрасывается исключение
+        try {
+            repository.add(product2);
+            fail("Expected AlreadyExistsException to be thrown");
+        } catch (AlreadyExistsException e) {
+            // Проверяем, что исключение выброшено, и что сообщение в нем правильное
+            assertEquals("The id 1 already exists", e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void testAddProduct() {
+        // Создаем репозиторий и продукт
+        Repository repository = new Repository();
+        Product product = new Product(1, "Book", 100);
+
+        // Добавляем продукт в репозиторий
+        repository.add(product);
+
+        // Проверяем, что продукт был добавлен в репозиторий
+        Product[] products = repository.findAll();
+        assertEquals(1, products.length); // в репозитории должен быть один товар
+        assertEquals("Book", products[0].getName()); // проверяем имя товара
+        assertEquals(100, products[0].getPrice()); // проверяем цену товара
+    }
+
+
+
+
+
 
 }
