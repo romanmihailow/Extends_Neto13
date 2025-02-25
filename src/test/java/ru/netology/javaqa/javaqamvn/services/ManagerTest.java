@@ -39,7 +39,7 @@ class ManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
     @Test
-    void searchByTextName() {
+    void searchByTextNameBook() {
         Repository repository = new Repository();
         Manager manager = new Manager(repository);
         Book book1 = new Book(1, "Book name_one", 100, "author_1");
@@ -52,6 +52,37 @@ class ManagerTest {
         Product[] expected = {book1, book2, book3};
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void searchByTextNameSmartphoneToLowerCase() {
+        Repository repository = new Repository();
+        Manager manager = new Manager(repository);
+        Smartphone smartphone1 = new Smartphone(1, "Smartphone name_one", 100, "author_1");
+        Smartphone smartphone2 = new Smartphone(2, "Smartphone name_two", 200, "author_2");
+        Smartphone smartphone3 = new Smartphone(3, "Smartphone name_three", 300, "author_3");
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        Product[] actual = manager.searchBy("smart");
+        Product[] expected = {smartphone1, smartphone2, smartphone3};
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void searchByTextNameSmartphoneToUpperCase() {
+        Repository repository = new Repository();
+        Manager manager = new Manager(repository);
+        Smartphone smartphone1 = new Smartphone(1, "Smartphone name_one", 100, "author_1");
+        Smartphone smartphone2 = new Smartphone(2, "Smartphone name_two", 200, "author_2");
+        Smartphone smartphone3 = new Smartphone(3, "Smartphone name_three", 300, "author_3");
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        Product[] actual = manager.searchBy("AUTH");
+        Product[] expected = {smartphone1, smartphone2, smartphone3};
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
     @Test
     void searchByTextNon() {
         Repository repository = new Repository();

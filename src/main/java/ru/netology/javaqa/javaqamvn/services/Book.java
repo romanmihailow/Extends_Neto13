@@ -10,6 +10,7 @@ public class Book extends Product {
     }
 
     public String getAuthor() {
+        System.out.println("getAuthor() был вызван. Автор: " + author);
         return author;
     }
 
