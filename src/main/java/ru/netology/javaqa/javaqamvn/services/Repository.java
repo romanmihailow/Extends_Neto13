@@ -18,8 +18,33 @@ public class Repository {
         products = temp;
     }
 
+//        ///   FIND_BY_ID+
+//    public Product[] findById(int id) {
+//        Product[] temp = new Product[1];
+//        int copyToIndex = 0;
+//        for (Product product : products) {
+//            if (product.getId() == id) {
+//                temp[copyToIndex] = product;
+//                copyToIndex++;
+//                return temp;
+//
+//            }
+//        }
+//        return null;
+//    }
+
+
+
+
+
     /// REMOVE
     public void removeById(int removeId) {
+        Product foundProduct = findById(removeId);
+        if (foundProduct == null) {
+            throw new NotFoundException(removeId);
+
+        }
+
         Product[] temp = new Product[products.length - 1];
         int index = 0;
         for (Product product : products) {
@@ -32,6 +57,14 @@ public class Repository {
     }
 
 
+    public Product findById(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
 
 
 
@@ -71,18 +104,7 @@ public class Repository {
 //        products = temp;
 //    }
 //
-//    ///   FIND_BY_ID+
-//    public Product[] findById(int id) {
-//        Product[] temp = new Product[1];
-//        int copyToIndex = 0;
-//        for (Product product : products) {
-//            if (product.getId() == id) {
-//                temp[copyToIndex] = product;
-//                copyToIndex++;
-//            }
-//        }
-//        return temp;
-//    }
+
 //
 //    ///  REMOVE_ALL+
 //    public void removeAll() {

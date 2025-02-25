@@ -67,4 +67,38 @@ class RepositoryTest {
     }
 
 
+    @Test
+    void testRemoveIdExtends() {
+        Repository repository = new Repository();
+        Book book1 = new Book(1, "Book name_one", 100, "author_1");
+        Book book2 = new Book(2, "Book name_two", 200, "author_2");
+        Book book3 = new Book(3, "Book name_three", 300, "author_3");
+        repository.add(book1);
+        repository.add(book2);
+        repository.add(book3);
+        repository.removeById(3);
+        Product[] actual = repository.findAll();
+        Product[] expected = {book1, book2};
+        assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    void testRemoveIdExtendsOutOfRange() {
+        Repository repository = new Repository();
+        Book book1 = new Book(1, "Book name_one", 100, "author_1");
+        Book book2 = new Book(2, "Book name_two", 200, "author_2");
+        Book book3 = new Book(3, "Book name_three", 300, "author_3");
+        repository.add(book1);
+        repository.add(book2);
+        repository.add(book3);
+
+        Assertions.assertThrows(NotFoundException.class,
+                () -> repository.removeById(-1)
+        );
+
+
+        /// NETOLOGY -> 44:50 ] https://netology.ru/profile/program/javaqa-52/lessons/230578/lesson_items/1221922
+    }
+
 }
